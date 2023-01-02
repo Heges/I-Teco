@@ -35,6 +35,7 @@
 - Хотелось бы получить решение на C# + для БД: MS SQL, PostgreSQL или LocalDb в виде Web-приложения.<br>
 
 - Подготовьте решение таким образом, чтобы не нужно было ничего отдельно запускать или устанавливать.<br>
+
 Скачать развернутое приложение(исходники только для Windows) можно отсюда https://drive.google.com/drive/folders/1cdcZuXOeOwGBK_QfknAdJUypCaaYpmuW?usp=share_link 
 Чтобы запустить:<br>
 1. Скачать сам репозиторий и запустить через Microsoft Visual Studio (платфорома core 3.1)<br>
