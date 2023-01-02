@@ -1,0 +1,14 @@
+﻿@model CallModelView
+
+<div class="form-group">
+    <form id="partialform" asp-controller="Contacts" asp-action="Call" data-ajax-method="POST" data-ajax="true" data-ajax-update="#partialform" data-ajax-mode="replace">
+        <input asp-for="CallerId" type="hidden" />
+        @*<div asp-validation-summary="All" class="text-danger"></div>*@
+        <div>
+            <label asp-for="PhoneNumber"></label>
+            <input asp-for="PhoneNumber"> 
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        <input class="link-button btn btn-primary" type="submit" value="Call" />
+    </form>
+</div>

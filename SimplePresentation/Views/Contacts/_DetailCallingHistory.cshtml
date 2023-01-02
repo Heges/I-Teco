@@ -1,0 +1,26 @@
+﻿@model List<CallDetailModelView>
+@{
+
+}
+
+@if (Model != null)
+{
+    @foreach (var item in Model)
+    {
+        <div class="form-actions no-color">
+            <table id="myRows" class="table">
+                <tr class="myrow">
+                    <td class="section table-column-center">
+                        <p>@item.CallerDisplayName --- <p>@item.CallerPhoneNumber</p>
+                    </td>
+                    <td class="section table-column-center">
+                        <p>@item.CalledDisplayName --- <p>@item.CalledPhoneNumber</p>
+                    </td>
+                    <td class="section table-column-center">
+                        <p>Date calling --- @item.DateCall</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+}

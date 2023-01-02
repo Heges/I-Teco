@@ -1,0 +1,19 @@
+﻿@model List<ContactModelView>
+<div class="row">
+    <div class="col-md-12">
+        <a class="link-button btn btn-primary" asp-controller="Contacts" asp-action="Create">Add new</a>
+    </div>
+    @if(Model != null && Model.Count > 0)
+    {
+        <div class="card">
+            @foreach (var item in Model)
+            {
+                <div class="card-body">
+                    <a asp-controller="Contacts" asp-action="Edit" asp-route-id="@item.Id">@item.DisplayName</a>
+                    <p>@item.PhoneNumber</p>
+                    <a class="link-button btn btn-primary" asp-controller="Contacts" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </div>
+            }
+        </div>
+    }
+</div>

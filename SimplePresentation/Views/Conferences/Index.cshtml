@@ -1,0 +1,15 @@
+﻿@model List<ContactConferenceModelView>
+<div class="row">
+    <div class="col-md-12">
+        <a class="link-button btn btn-primary" asp-controller="Conferences" asp-action="Create">Add new</a>
+    </div>
+    <div class="col">
+        @foreach (var conf in Model)
+        {
+        <div class="col-md-3">
+            <p><a asp-controller="Conferences" asp-action="Edit" asp-route-Id="@conf.ConferenceId">Active conference for these date @conf.DateConference.ToShortDateString()</a></p>
+            
+        </div>
+        }
+    </div>
+</div>

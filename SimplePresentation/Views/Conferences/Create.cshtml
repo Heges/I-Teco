@@ -1,0 +1,66 @@
+﻿@model ConferenceModelView
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <form asp-controller="Conferences" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DateConference" class="control-label"></label>
+                <input asp-for="DateConference" class="form-control" />
+                <span asp-validation-for="DateConference" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <table id="myRows" class="table">
+                    <tr class="myrow">
+                        <td class="section table-column-center">
+                            <label asp-for="Contacts[0].DisplayName" class="control-label"></label>
+                            <input asp-for="Contacts[0].DisplayName" class="form-control" />
+                            <span asp-validation-for="Contacts[0].DisplayName" class="text-danger"></span>
+                        </td>
+                        <td class="section table-column-center">
+                            <label asp-for="Contacts[0].PhoneNumber" class="control-label"></label>
+                            <input asp-for="Contacts[0].PhoneNumber" class="form-control" />
+                            <span asp-validation-for="Contacts[0].PhoneNumber" class="text-danger"></span>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="item-add">
+                <a id="add-row" class="link-button btn btn-primary">Add Row</a>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        $("#add-row").click(function () {
+            var nextId = $(".myrow").length;
+
+            var rowHtml = '<tr class="myrow">' +
+                '<td class="section table-column-center" >' +
+                '<input class="form-control" type="text" id="Items_' + nextId + '_Name" name="Contacts[' + nextId + '].DisplayName" value=""/>' +
+
+                '<span class="text-danger field-validation-valid" data-valmsg-for="Items[' + nextId + '].Name" data-valmsg-replace="true"></span>' +
+
+                '</td>' +
+
+                '<td class="section table-column-center">' +
+                '<input class="form-control" type="text" id="Items_' + nextId + '_Description" name="Contacts[' + nextId + '].PhoneNumber" value=""/>' +
+
+                '<span class="text-danger field-validation-valid" data-valmsg-for="Contacts[' + nextId + '].PhoneNumber" data-valmsg-replace="true"></span>' +
+
+                '</td>' +
+
+                '</tr>';
+
+            $("#myRows").append(rowHtml);
+        });
+    </script>
+}

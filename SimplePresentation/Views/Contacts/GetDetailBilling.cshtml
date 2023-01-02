@@ -1,0 +1,32 @@
+﻿@model ContactDetailBillingBetweenRangeModelView
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class="form-group">
+                <h2>Calling History</h2>
+                <form asp-controller="Contacts" asp-action="GetDetailBilling" method="get">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-actions no-color">
+                        <table id="myRows" class="table">
+                            <tr class="myrow">
+                                <td class="section table-column-center">
+                                    <input asp-for="StartRangeDate" name="StartRangeDate" value="@ViewData["StartRangeDate"]" />
+                                </td>
+                                <td class="section table-column-center">
+                                    <input asp-for="EndRangeDate" name="EndRangeDate" value="@ViewData["StartRangeDate"]" />
+                                </td>
+                            </tr>
+                        </table>
+                        <a class="link-button btn btn-primary" asp-controller="Contacts" asp-action="GetDetailBilling" asp-route-Id="@Model == null ? Guid.Empty : @Model.ContactId; ">ResetFilter</a>
+                    </div>
+                    <input class="form-control" type="submit" name="button" value="Watch Detail in range" />
+                </form>
+                @if (Model.CallingHistory != null)
+                {
+                    await Html.RenderPartialAsync("_DetailCallingHistory", Model.CallingHistory);
+                }
+            </div>
+        </div>
+    </div>
+</div>
