@@ -81,18 +81,15 @@ namespace SimplePresentation.Controllers
             //безотложно подгружаем множество связей для нашей модели представления
             //в более новых EF есть оптмизиации например .AsSplitQuery() разделяя один запрос на множество
             //чтобы избежать "декартового взрыва"
-            Stopwatch wtch = new Stopwatch();
-            wtch.Start();
             var contact = _context.Contacts
                 .Include(x => x.CallingHistories)
                 .Include(x => x.Conferences)
+                .ThenInclude(xx => xx.Conference)
                 .Include(x => x.Phone)
                 .Include(x => x.Profile)
                 .AsNoTracking()
                 .Where(x => x.Id == id)
                 .FirstOrDefault();
-            wtch.Stop();
-            var result = wtch.ElapsedMilliseconds;
             if (contact != null)
             {
                 return View(_mapper.Map<ContactModelView>(contact));

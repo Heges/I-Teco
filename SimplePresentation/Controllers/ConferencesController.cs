@@ -24,18 +24,11 @@ namespace SimplePresentation.Controllers
 
         public IActionResult Index()
         {
-            var presentList = _context.ContactConference
-                .Include(x => x.Conference)
-                .Include(x => x.Contact)
-                .ThenInclude(x => x.Phone)
-                .Include(x => x.Contact)
-                .ThenInclude(x => x.Profile)
-                .AsNoTracking()
-                .ToList();
-            var mappedList = new List<ContactConferenceModelView>();
+            var presentList = _context.Conferences.Include(x => x.Contacts);
+            var mappedList = new List<ConferenceEditModelView>();
             foreach (var item in presentList)
             {
-                mappedList.Add(_mapper.Map<ContactConferenceModelView>(item));
+                mappedList.Add(_mapper.Map<ConferenceEditModelView>(item));
             }
             return View(mappedList);
         }
@@ -145,6 +138,18 @@ namespace SimplePresentation.Controllers
                 return View(vm);
             }
             
+        }
+
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var conference = _context.Conferences.Where(x => x.Id == id).FirstOrDefault();
+            if(conference != null)
+            {
+                _context.Remove(conference);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
     }
 }
